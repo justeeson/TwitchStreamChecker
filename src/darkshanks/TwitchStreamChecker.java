@@ -7,7 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class EEStreamChecker {
+public class TwitchStreamChecker {
 private static URL url;
 private static int streamStatus = 0;
 
@@ -15,7 +15,7 @@ public static void main(String args[]) {
 	while(true) {
 	// Attempt a GET request to the URL
 	try {
-		url = new URL("https://api.twitch.tv/kraken/streams/eternalenvyy?client_id=xxxx"); // Replace with your client id
+		url = new URL("https://api.twitch.tv/kraken/streams/xxxx?client_id=yyyy"); // Replace xxxx with streamer name and yyyy with your client id
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
 		int status = con.getResponseCode();
@@ -29,7 +29,7 @@ public static void main(String args[]) {
 					}
 					String input = content.toString();
 					if(input.contains("\"stream\":null")) {
-						System.out.println("EternalEnvyy is currently offline!");
+						System.out.println("Streamer is currently offline!");
 						streamStatus = 0;
 						 try
 					        {
@@ -41,7 +41,7 @@ public static void main(String args[]) {
 					}
 					else {
 						if(streamStatus == 0) {
-							System.out.println("EternalEnvyy is currently online!");
+							System.out.println("Streamer is currently online!");
 							streamStatus = 1;
 							try {
 								Thread.sleep(1800000); // Wait for 30 minutes before checking again
